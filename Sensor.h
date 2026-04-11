@@ -1,0 +1,31 @@
+// Sensor.h
+#pragma once
+
+#include <string>
+#include <vector>
+#include <ctime>
+
+class Sensor {
+private:
+    std::string id;
+    std::string tipo;
+    std::string localizacao;
+    double ultimaLeitura;
+    std::vector<double> historico;
+    time_t ultimaAtualizacao;
+
+    std::string formatarData(time_t timestamp) const;
+
+public:
+    Sensor(const std::string& id, const std::string& tipo, const std::string& localizacao);
+
+    void atualizarLeitura(double novoValor);
+    void exibirInfo() const;
+
+    std::string getId()            const;
+    std::string getTipo()          const;
+    std::string getLocalizacao()   const;
+    double      getUltimaLeitura() const;
+    time_t      getUltimaAtualizacao() const;
+    const std::vector<double>& getHistorico() const;
+};
