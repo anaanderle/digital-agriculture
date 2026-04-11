@@ -1,11 +1,9 @@
-// Sensor.h
 #pragma once
 
 #include <string>
 #include <vector>
 
 class Sensor {
-private:
     int id;
     std::string tipo;
     std::string localizacao;

@@ -1,45 +1,41 @@
-// main.cpp
 #include <iostream>
 #include <string>
 #include "SensorDataBase.h"
 
 void printMenu() {
-    std::cout << "\n========================================\n";
-    std::cout << "         SENSOR DATABASE SYSTEM\n";
-    std::cout << "========================================\n";
-    std::cout << "  1. Register sensor\n";
-    std::cout << "  2. Update reading\n";
-    std::cout << "  3. Search sensor by ID\n";
-    std::cout << "  4. Remove sensor\n";
-    std::cout << "  5. Display all sensors\n";
-    std::cout << "  0. Exit\n";
-    std::cout << "========================================\n";
-    std::cout << "Option: ";
+    std::cout << "Agricultura digital\n";
+    std::cout << "1. Registrar sensor\n";
+    std::cout << "2. Atualizar leitura\n";
+    std::cout << "3. Procurar sensor\n";
+    std::cout << "4. Remover sensor\n";
+    std::cout << "5. Exibir todos os sensores\n";
+    std::cout << "0. Sair\n";
+    std::cout << "Opção: ";
 }
 
 void registerSensor(SensorDataBase& db) {
     int id;
     std::string type, location;
-    std::cout << "\n--- Register Sensor ---\n";
-    std::cout << "ID       : "; std::cin >> id;
-    std::cout << "Type     : "; std::cin >> type;
-    std::cout << "Location : "; std::cin >> location;
+    std::cout << "\nRegistrar sensor\n";
+    std::cout << "ID          : "; std::cin >> id;
+    std::cout << "Tipo        : "; std::cin >> type;
+    std::cout << "Localização : "; std::cin >> location;
     db.registerSensor(id, type, location);
 }
 
 void updateReading(SensorDataBase& db) {
     int id;
     double value;
-    std::cout << "\n--- Update Reading ---\n";
-    std::cout << "Sensor ID : "; std::cin >> id;
-    std::cout << "New value : "; std::cin >> value;
+    std::cout << "\nAtualizar leitura\n";
+    std::cout << "ID do sensor : "; std::cin >> id;
+    std::cout << "Novo valor   : "; std::cin >> value;
     db.updateReading(id, value);
 }
 
 void searchSensor(SensorDataBase& db) {
     int id;
-    std::cout << "\n--- Search Sensor ---\n";
-    std::cout << "Sensor ID : "; std::cin >> id;
+    std::cout << "\nProcurar sendor\n";
+    std::cout << "ID do sensor : "; std::cin >> id;
 
     Sensor* s = db.findById(id);
     if (s != nullptr)
@@ -48,32 +44,30 @@ void searchSensor(SensorDataBase& db) {
 
 void removeSensor(SensorDataBase& db) {
     int id;
-    std::cout << "\n--- Remove Sensor ---\n";
-    std::cout << "Sensor ID : "; std::cin >> id;
+    std::cout << "\nRemover sensor\n";
+    std::cout << "ID do sensor : "; std::cin >> id;
     db.removeById(id);
 }
 
 void displayAll(SensorDataBase& db) {
-    std::cout << "\n--- All Sensors ---\n";
+    std::cout << "\nTodos os sensores\n";
     db.listAllIds();
 }
 
 int main() {
     int maxItems;
 
-    std::cout << "========================================\n";
-    std::cout << "       SENSOR DATABASE SYSTEM\n";
-    std::cout << "========================================\n";
-    std::cout << "Max number of sensors: ";
+    std::cout << "Agricultura digital\n";
+    std::cout << "Número máximo de sensores: ";
     std::cin >> maxItems;
 
     while (maxItems <= 0) {
-        std::cout << "[ERROR] Value must be greater than 0. Try again: ";
+        std::cout << "[ERROR] Número máximo de sensores deve ser maior que 0.";
         std::cin >> maxItems;
     }
 
     SensorDataBase db(maxItems);
-    std::cout << "[OK] Database created with capacity for " << maxItems << " sensors.\n";
+    std::cout << "[OK] Sistema criado com capacidade para " << maxItems << " sensores.\n";
 
     int option;
 
@@ -84,7 +78,7 @@ int main() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(1000, '\n');
-            std::cout << "[ERROR] Invalid input. Please enter a number.\n";
+            std::cout << "[ERROR] Opção inválida.\n";
             continue;
         }
 
@@ -95,10 +89,10 @@ int main() {
             case 4: removeSensor(db);   break;
             case 5: displayAll(db);     break;
             case 0:
-                std::cout << "\n[INFO] Exiting system. Goodbye!\n";
+                std::cout << "\n[INFO] Saindo do sistema!\n";
                 break;
             default:
-                std::cout << "[ERROR] Invalid option. Please choose between 0 and 5.\n";
+                std::cout << "[ERROR] Opção inválida.\n";
         }
 
     } while (option != 0);

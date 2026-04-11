@@ -1,10 +1,8 @@
-// SensorDataBase.h
 #pragma once
 
-#include "Sensor.h"
+#include "Sensor.cpp"
 
 class SensorDataBase {
-private:
     Sensor** sensors;
     bool*    deleted;
     int      count;

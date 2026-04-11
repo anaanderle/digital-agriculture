@@ -1,4 +1,3 @@
-// Sensor.cpp
 #include "Sensor.h"
 #include <iostream>
 #include <iomanip>
@@ -15,11 +14,11 @@ void Sensor::atualizarLeitura(double novoValor) {
 }
 
 void Sensor::exibirInfo() const {
-    std::cout << "=== Sensor ===\n";
-    std::cout << "ID          : " << id << "\n";
-    std::cout << "Tipo        : " << tipo << "\n";
-    std::cout << "Localização : " << localizacao << "\n";
-    std::cout << "Última leitura: " << ultimaLeitura << "\n";
+    std::cout << "Sensor\n";
+    std::cout << "ID             : " << id << "\n";
+    std::cout << "Tipo           : " << tipo << "\n";
+    std::cout << "Localização    : " << localizacao << "\n";
+    std::cout << "Última leitura : " << ultimaLeitura << "\n";
 
     if (ultimaAtualizacao != 0)
         std::cout << "Atualizado em : " << formatarData(ultimaAtualizacao) << "\n";
