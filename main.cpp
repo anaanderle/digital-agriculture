@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "SensorDataBase.h"
+#include "ImportExport.h"
 
 void printMenu() {
     std::cout << "Agricultura digital\n";
@@ -9,6 +10,8 @@ void printMenu() {
     std::cout << "3. Procurar sensor\n";
     std::cout << "4. Remover sensor\n";
     std::cout << "5. Exibir todos os sensores\n";
+    std::cout << "6. Importar sensores\n";
+    std::cout << "7. Exportar sensores\n";
     std::cout << "0. Sair\n";
     std::cout << "Opção: ";
 }
@@ -54,6 +57,21 @@ void displayAll(SensorDataBase& db) {
     db.listAllIds();
 }
 
+void importSensors(SensorDataBase& db) {
+    std::string inputFile, outputFile;
+    std::cout << "\nImportar sensores\n";
+    std::cout << "Arquivo de entrada : "; std::cin >> inputFile;
+    std::cout << "Arquivo de saída   : "; std::cin >> outputFile;
+    ImportExport::importSensors(db, inputFile, outputFile);
+}
+
+void exportSensors(const SensorDataBase& db) {
+    std::string outputFile;
+    std::cout << "\nExportar sensores\n";
+    std::cout << "Arquivo de saída   : "; std::cin >> outputFile;
+    ImportExport::exportSensors(db, outputFile);
+}
+
 int main() {
     int maxSensors;
 
@@ -88,6 +106,8 @@ int main() {
             case 3: searchSensor(db);   break;
             case 4: removeSensor(db);   break;
             case 5: displayAll(db);     break;
+            case 6: importSensors(db);  break;
+            case 7: exportSensors(db);  break;
             case 0:
                 std::cout << "\n[INFO] Saindo do sistema!\n";
                 break;

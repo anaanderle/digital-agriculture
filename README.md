@@ -21,6 +21,7 @@ digital-agriculture/
 ├── main.cpp                 # Interface interativa com menu de opções
 ├── Sensor.h / Sensor.cpp    # Classe que representa um sensor
 ├── SensorDataBase.h / SensorDataBase.cpp  # Tabela hash com endereçamento duplo
+├── ImportExport.h / ImportExport.cpp      # Classe para importação/exportação de sensores
 └── test.cpp                 # Testes de performance
 ```
 
@@ -61,6 +62,9 @@ Implementa uma **tabela hash com endereçamento duplo** para armazenar sensores.
 - `removeById(id)`: Remove um sensor (marca como deletado)
 - `updateReading(id, value)`: Atualiza leitura de um sensor
 - `listAllIds()`: Lista todos os sensores registrados
+- `getSensors()`: Retorna o array de sensores para iteração (usado pela exportação)
+- `getMaxSensors()`: Retorna a capacidade máxima da tabela hash
+- `getCount()`: Retorna a quantidade de sensores registrados
 
 **Funções de hash:**
 - `h1(k)`: Hash primário = `k % maxSensors`
@@ -68,11 +72,68 @@ Implementa uma **tabela hash com endereçamento duplo** para armazenar sensores.
 
 ---
 
+## 📤 Importação e Exportação de Sensores
+
+### **Classe ImportExport**
+Gerencia a importação e exportação de sensores para arquivos de texto.
+
+**Métodos:**
+- `importSensors(SensorDataBase& db, inputFile, outputFile)`: Importa sensores de um arquivo TXT
+- `exportSensors(const SensorDataBase& db, outputFile)`: Exporta estado completo do banco de dados
+
+### **Importação de Sensores (Opção 6)**
+
+**Formato do arquivo de entrada:**
+Cada linha deve conter: `id - type - location`
+
+```
+1 - temperatura - cozinha
+2 - umidade - quarto
+3 - luz - sala
+4 - pressao - garagem
+```
+
+**Arquivo de resultado:**
+Cada linha contém o status da importação: `id - sucesso` ou `id - falha`
+
+```
+1 - sucesso
+2 - sucesso
+3 - sucesso
+4 - falha
+```
+
+**Recursos:**
+- Valida o formato de entrada
+- Relata sucesso ou falha para cada sensor
+- Detecta IDs duplicados
+- Cria arquivo com relatório detalhado
+
+### **Exportação de Sensores (Opção 7)**
+
+**Formato do arquivo de saída:**
+Cada linha contém todas as informações de um sensor: `id, type, location, lastReading, lastUpdate, [history]`
+
+```
+1, temperatura, cozinha, 23.5, 11/04/2026 20:07:19, [23.5, 24.1, 22.8]
+2, umidade, quarto, 65.3, 11/04/2026 20:07:19, [65.3]
+3, luz, sala, 500, (nunca), []
+```
+
+**Recursos:**
+- Exporta TODOS os sensores na ordem do banco de dados
+- Inclui histórico completo de leituras
+- Formata datas em padrão DD/MM/YYYY HH:MM:SS
+- Marca sensores sem leitura como "(nunca)"
+- Mostra quantidade de sensores exportados
+
+---
+
 ## 🚀 Como Compilar e Rodar
 
 ### **1. Compilar o programa principal:**
 ```bash
-g++ -std=c++17 -o main main.cpp Sensor.cpp SensorDataBase.cpp -I.
+g++ -std=c++17 -o main main.cpp Sensor.cpp SensorDataBase.cpp ImportExport.cpp -I.
 ```
 
 ### **2. Executar o programa principal:**
@@ -86,6 +147,8 @@ Isso abre um menu interativo onde você pode:
 - Procurar sensores
 - Remover sensores
 - Exibir todos os sensores
+- Importar sensores de um arquivo
+- Exportar sensores para um arquivo
 - Sair do programa
 
 **Exemplo de uso:**
@@ -100,6 +163,8 @@ Agricultura digital
 3. Procurar sensor
 4. Remover sensor
 5. Exibir todos os sensores
+6. Importar sensores
+7. Exportar sensores
 0. Sair
 Opção: 1
 
@@ -114,7 +179,7 @@ Localização : Talhão A
 
 ### **3. Compilar e rodar os testes:**
 ```bash
-g++ -std=c++17 -o test test.cpp Sensor.cpp SensorDataBase.cpp -I.
+g++ -std=c++17 -o test test.cpp Sensor.cpp SensorDataBase.cpp ImportExport.cpp -I.
 ./test
 ```
 

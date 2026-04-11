@@ -22,4 +22,8 @@ public:
     bool     removeById(int id);
     bool     updateReading(int id, double value);
     void     listAllIds() const;
+
+    Sensor** getSensors() const;
+    int      getMaxSensors() const;
+    int      getCount() const;
 };

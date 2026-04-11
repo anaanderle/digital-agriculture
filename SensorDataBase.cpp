@@ -127,3 +127,15 @@ void SensorDataBase::listAllIds() const {
             std::cout << "  [posição " << i << "] " << sensors[i]->getId() << "\n";
     }
 }
+
+Sensor** SensorDataBase::getSensors() const {
+    return sensors;
+}
+
+int SensorDataBase::getMaxSensors() const {
+    return maxSensors;
+}
+
+int SensorDataBase::getCount() const {
+    return count;
+}
