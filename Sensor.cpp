@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <sstream>
 
-Sensor::Sensor(const std::string& id, const std::string& tipo, const std::string& localizacao)
+Sensor::Sensor(int id, const std::string& tipo, const std::string& localizacao)
     : id(id), tipo(tipo), localizacao(localizacao),
       ultimaLeitura(0.0), ultimaAtualizacao(0) {}
 
@@ -41,7 +41,7 @@ std::string Sensor::formatarData(time_t timestamp) const {
     return oss.str();
 }
 
-std::string Sensor::getId()           const { return id; }
+int         Sensor::getId()           const { return id; }
 std::string Sensor::getTipo()         const { return tipo; }
 std::string Sensor::getLocalizacao()  const { return localizacao; }
 double      Sensor::getUltimaLeitura() const { return ultimaLeitura; }

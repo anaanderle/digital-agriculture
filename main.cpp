@@ -18,7 +18,8 @@ void printMenu() {
 }
 
 void registerSensor(SensorDataBase& db) {
-    std::string id, type, location;
+    int id;
+    std::string type, location;
     std::cout << "\n--- Register Sensor ---\n";
     std::cout << "ID       : "; std::cin >> id;
     std::cout << "Type     : "; std::cin >> type;
@@ -27,7 +28,7 @@ void registerSensor(SensorDataBase& db) {
 }
 
 void updateReading(SensorDataBase& db) {
-    std::string id;
+    int id;
     double value;
     std::cout << "\n--- Update Reading ---\n";
     std::cout << "Sensor ID : "; std::cin >> id;
@@ -36,7 +37,7 @@ void updateReading(SensorDataBase& db) {
 }
 
 void searchSensor(SensorDataBase& db) {
-    std::string id;
+    int id;
     std::cout << "\n--- Search Sensor ---\n";
     std::cout << "Sensor ID : "; std::cin >> id;
 
@@ -46,7 +47,7 @@ void searchSensor(SensorDataBase& db) {
 }
 
 void removeSensor(SensorDataBase& db) {
-    std::string id;
+    int id;
     std::cout << "\n--- Remove Sensor ---\n";
     std::cout << "Sensor ID : "; std::cin >> id;
     db.removeById(id);

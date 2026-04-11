@@ -3,11 +3,10 @@
 
 #include <string>
 #include <vector>
-#include <ctime>
 
 class Sensor {
 private:
-    std::string id;
+    int id;
     std::string tipo;
     std::string localizacao;
     double ultimaLeitura;
@@ -17,12 +16,12 @@ private:
     std::string formatarData(time_t timestamp) const;
 
 public:
-    Sensor(const std::string& id, const std::string& tipo, const std::string& localizacao);
+    Sensor(int id, const std::string& tipo, const std::string& localizacao);
 
     void atualizarLeitura(double novoValor);
     void exibirInfo() const;
 
-    std::string getId()            const;
+    int getId()            const;
     std::string getTipo()          const;
     std::string getLocalizacao()   const;
     double      getUltimaLeitura() const;
