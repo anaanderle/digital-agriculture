@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sensor.cpp"
+#include "Sensor.h"
 
 class SensorDataBase {
     Sensor** sensors;
@@ -17,7 +17,7 @@ public:
     SensorDataBase(int maxSensors);
     ~SensorDataBase();
 
-    bool     registerSensor(int id, const std::string& type, const std::string& location);
+    int     registerSensor(int id, const std::string& type, const std::string& location);
     Sensor*  findById(int id) const;
     bool     removeById(int id);
     bool     updateReading(int id, double value);

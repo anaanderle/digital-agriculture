@@ -50,10 +50,10 @@ int SensorDataBase::findIndexById(int id) const {
     return -1;
 }
 
-bool SensorDataBase::registerSensor(int id, const std::string& type, const std::string& location) {
+int SensorDataBase::registerSensor(int id, const std::string& type, const std::string& location) {
     if (count >= maxSensors) {
         std::cout << "[ERROR] Capacidade máxima de sensores atingida '" << id << "'.\n";
-        return false;
+        return -1;
     }
 
     for (int i = 0; i < maxSensors; i++) {
@@ -61,7 +61,7 @@ bool SensorDataBase::registerSensor(int id, const std::string& type, const std::
 
         if (sensors[slot] != nullptr && sensors[slot]->getId() == id) {
             std::cout << "[ERROR] Sensor com ID '" << id << "' já existe.\n";
-            return false;
+            return -1;
         }
 
         // posição vazia
@@ -70,13 +70,13 @@ bool SensorDataBase::registerSensor(int id, const std::string& type, const std::
             deleted[slot] = false;
             count++;
             std::cout << "[OK] Sensor '" << id << "' registrado na posição " << slot << ".\n";
-            return true;
+            return i;
         }
 
         // continua se posição não é null
     }
 
-    return false;
+    return -1;
 }
 
 Sensor* SensorDataBase::findById(int id) const {
@@ -110,7 +110,7 @@ bool SensorDataBase::updateReading(int id, double value) {
         return false;
     }
 
-    sensors[index]->atualizarLeitura(value);
+    sensors[index]->updateReading(value);
     std::cout << "[OK] Sensor '" << id << "' atualizado com valor " << value << ".\n";
     return true;
 }

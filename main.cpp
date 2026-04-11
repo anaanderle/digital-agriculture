@@ -39,7 +39,7 @@ void searchSensor(SensorDataBase& db) {
 
     Sensor* s = db.findById(id);
     if (s != nullptr)
-        s->exibirInfo();
+        s->displayInfo();
 }
 
 void removeSensor(SensorDataBase& db) {
@@ -55,19 +55,19 @@ void displayAll(SensorDataBase& db) {
 }
 
 int main() {
-    int maxItems;
+    int maxSensors;
 
     std::cout << "Agricultura digital\n";
     std::cout << "Número máximo de sensores: ";
-    std::cin >> maxItems;
+    std::cin >> maxSensors;
 
-    while (maxItems <= 0) {
+    while (maxSensors <= 0) {
         std::cout << "[ERROR] Número máximo de sensores deve ser maior que 0.";
-        std::cin >> maxItems;
+        std::cin >> maxSensors;
     }
 
-    SensorDataBase db(maxItems);
-    std::cout << "[OK] Sistema criado com capacidade para " << maxItems << " sensores.\n";
+    SensorDataBase db(maxSensors);
+    std::cout << "[OK] Sistema criado com capacidade para " << maxSensors << " sensores.\n";
 
     int option;
 

@@ -5,24 +5,24 @@
 
 class Sensor {
     int id;
-    std::string tipo;
-    std::string localizacao;
-    double ultimaLeitura;
-    std::vector<double> historico;
-    time_t ultimaAtualizacao;
+    std::string type;
+    std::string location;
+    double lastReading;
+    std::vector<double> history;
+    time_t lastUpdate;
 
-    std::string formatarData(time_t timestamp) const;
+    std::string formatDate(time_t timestamp) const;
 
 public:
-    Sensor(int id, const std::string& tipo, const std::string& localizacao);
+    Sensor(int id, const std::string& type, const std::string& location);
 
-    void atualizarLeitura(double novoValor);
-    void exibirInfo() const;
+    void updateReading(double newValue);
+    void displayInfo() const;
 
     int getId()            const;
-    std::string getTipo()          const;
-    std::string getLocalizacao()   const;
-    double      getUltimaLeitura() const;
-    time_t      getUltimaAtualizacao() const;
-    const std::vector<double>& getHistorico() const;
+    std::string getType()          const;
+    std::string getLocation()   const;
+    double      getLastReading() const;
+    time_t      getLastUpdate() const;
+    const std::vector<double>& getHistory() const;
 };

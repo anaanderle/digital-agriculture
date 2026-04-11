@@ -3,37 +3,37 @@
 #include <iomanip>
 #include <sstream>
 
-Sensor::Sensor(int id, const std::string& tipo, const std::string& localizacao)
-    : id(id), tipo(tipo), localizacao(localizacao),
-      ultimaLeitura(0.0), ultimaAtualizacao(0) {}
+Sensor::Sensor(int id, const std::string& type, const std::string& location)
+    : id(id), type(type), location(location),
+      lastReading(0.0), lastUpdate(0) {}
 
-void Sensor::atualizarLeitura(double novoValor) {
-    ultimaLeitura = novoValor;
-    ultimaAtualizacao = std::time(nullptr);
-    historico.push_back(novoValor);
+void Sensor::updateReading(double newValue) {
+    lastReading = newValue;
+    lastUpdate = std::time(nullptr);
+    history.push_back(newValue);
 }
 
-void Sensor::exibirInfo() const {
+void Sensor::displayInfo() const {
     std::cout << "Sensor\n";
     std::cout << "ID             : " << id << "\n";
-    std::cout << "Tipo           : " << tipo << "\n";
-    std::cout << "Localização    : " << localizacao << "\n";
-    std::cout << "Última leitura : " << ultimaLeitura << "\n";
+    std::cout << "Tipo           : " << type << "\n";
+    std::cout << "Localização    : " << location << "\n";
+    std::cout << "Última leitura : " << lastReading << "\n";
 
-    if (ultimaAtualizacao != 0)
-        std::cout << "Atualizado em : " << formatarData(ultimaAtualizacao) << "\n";
+    if (lastUpdate != 0)
+        std::cout << "Atualizado em : " << formatDate(lastUpdate) << "\n";
     else
         std::cout << "Atualizado em : (nunca)\n";
 
     std::cout << "Histórico   : [";
-    for (size_t i = 0; i < historico.size(); ++i) {
-        std::cout << historico[i];
-        if (i + 1 < historico.size()) std::cout << ", ";
+    for (size_t i = 0; i < history.size(); ++i) {
+        std::cout << history[i];
+        if (i + 1 < history.size()) std::cout << ", ";
     }
     std::cout << "]\n";
 }
 
-std::string Sensor::formatarData(time_t timestamp) const {
+std::string Sensor::formatDate(time_t timestamp) const {
     std::tm* tm_info = std::localtime(&timestamp);
     std::ostringstream oss;
     oss << std::put_time(tm_info, "%d/%m/%Y %H:%M:%S");
@@ -41,8 +41,8 @@ std::string Sensor::formatarData(time_t timestamp) const {
 }
 
 int         Sensor::getId()           const { return id; }
-std::string Sensor::getTipo()         const { return tipo; }
-std::string Sensor::getLocalizacao()  const { return localizacao; }
-double      Sensor::getUltimaLeitura() const { return ultimaLeitura; }
-time_t      Sensor::getUltimaAtualizacao() const { return ultimaAtualizacao; }
-const std::vector<double>& Sensor::getHistorico() const { return historico; }
+std::string Sensor::getType()         const { return type; }
+std::string Sensor::getLocation()  const { return location; }
+double      Sensor::getLastReading() const { return lastReading; }
+time_t      Sensor::getLastUpdate() const { return lastUpdate; }
+const std::vector<double>& Sensor::getHistory() const { return history; }
