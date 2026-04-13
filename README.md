@@ -83,6 +83,14 @@ Implementa uma **tabela hash com endereçamento duplo** para armazenar sensores.
 
 ---
 
+## Caso de Tombstone (bug e correção)
+
+Durante os testes, encontramos um bug na versão inicial da inserção: ao encontrar um `tombstone`, o algoritmo reutilizava o slot cedo demais e podia aceitar ID duplicado após remoções. A figura abaixo resume o caso e a correção aplicada.
+
+![Caso de tombstone: bug inicial e correção](tombstone.png)
+
+---
+
 ## Importação e Exportação de Sensores
 
 ### **Classe ImportExport**
