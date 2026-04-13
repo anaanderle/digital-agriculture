@@ -94,6 +94,7 @@ void simulateAutomaticReadings(SensorDataBase& db) {
 
 int main() {
     int maxSensors;
+    int optimizeMaxSensorOption;
 
     std::cout << "Agricultura digital\n";
     std::cout << "Número máximo de sensores: ";
@@ -104,7 +105,14 @@ int main() {
         std::cin >> maxSensors;
     }
 
-    SensorDataBase db(maxSensors);
+    std::cout << "Gostaria de otimizar sua hash usando o próximo número primo:\n";
+    std::cout << "1. Sim (padrão)\n";
+    std::cout << "2. Não\n";
+    std::cin >> optimizeMaxSensorOption;
+
+    bool optimizeMaxSensor = (optimizeMaxSensorOption != 2);
+
+    SensorDataBase db(maxSensors, optimizeMaxSensor);
     std::cout << "[OK] Sistema criado com capacidade para " << db.getMaxSensors() << " sensores.\n";
 
     int option;

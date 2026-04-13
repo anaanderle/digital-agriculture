@@ -14,7 +14,7 @@ class SensorDataBase {
     int findIndexById(int id) const;
 
 public:
-    SensorDataBase(int maxSensors);
+    SensorDataBase(int maxSensors, bool optimizeMaxSensor = true);
     ~SensorDataBase();
 
     int     registerSensor(int id, const std::string& type, const std::string& location);

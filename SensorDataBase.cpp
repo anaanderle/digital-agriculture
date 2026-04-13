@@ -26,7 +26,7 @@ namespace
 
 
 
-SensorDataBase::SensorDataBase(int maxSensors) : count(0), maxSensors(nextPrime(maxSensors < 2 ? 2 : maxSensors)) {
+SensorDataBase::SensorDataBase(int maxSensors, bool optimizeMaxSensor) : count(0), maxSensors(optimizeMaxSensor ? nextPrime(maxSensors) : maxSensors) {
     sensors = new Sensor*[maxSensors];
     deleted = new bool[maxSensors];
 
