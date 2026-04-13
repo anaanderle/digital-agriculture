@@ -1,7 +1,32 @@
 #include "SensorDataBase.h"
 #include <iostream>
 
-SensorDataBase::SensorDataBase(int maxSensors) : count(0), maxSensors(maxSensors) {
+namespace
+{
+    bool isPrime(int number)
+    {
+        if (number < 2) return false;
+        if (number % 2 == 0) return number == 2;
+
+        for (int i = 3; i * i <= number; i += 2)
+            if (number % i == 0) return false;
+
+        return true;
+    }
+
+    int nextPrime(int number)
+    {
+        if (number <= 2) return 2;
+        if (number % 2 == 0) number++;
+        while (!isPrime(number)) number += 2;
+
+        return number;
+    }
+}
+
+
+
+SensorDataBase::SensorDataBase(int maxSensors) : count(0), maxSensors(nextPrime(maxSensors < 2 ? 2 : maxSensors)) {
     sensors = new Sensor*[maxSensors];
     deleted = new bool[maxSensors];
 
@@ -24,6 +49,7 @@ int SensorDataBase::h1(unsigned int k) const {
 }
 
 int SensorDataBase::h2(unsigned int k) const {
+    if (maxSensors <= 1) return 1; // Evita divisão por zero
     return 1 + (k % (maxSensors - 1));
 }
 
@@ -56,24 +82,48 @@ int SensorDataBase::registerSensor(int id, const std::string& type, const std::s
         return -1;
     }
 
+    int firstDeletedSlot = -1;
+    int firstDeletedCollision = -1;
+
     for (int i = 0; i < maxSensors; i++) {
         int slot = doubleHash(id, i);
 
-        if (sensors[slot] != nullptr && sensors[slot]->getId() == id) {
-            std::cout << "[ERROR] Sensor com ID '" << id << "' já existe.\n";
-            return -1;
+        // Slot ocupado: precisa checar duplicidade
+        if (sensors[slot] != nullptr) {
+            if (sensors[slot]->getId() == id) {
+                std::cout << "[ERROR] Sensor com ID '" << id << "' já existe.\n";
+                return -1;
+            }
+            continue;
         }
 
-        // posição vazia
-        if (sensors[slot] == nullptr) {
-            sensors[slot] = new Sensor(id, type, location);
-            deleted[slot] = false;
-            count++;
-            std::cout << "[OK] Sensor '" << id << "' registrado na posição " << slot << ".\n";
-            return i;
+        // Slot vazio mas já usado antes (tombstone): guarda e continua sondando
+        if (deleted[slot]) {
+            if (firstDeletedSlot == -1) {
+                firstDeletedSlot = slot;
+                firstDeletedCollision = i;
+            }
+            continue;
         }
 
-        // continua se posição não é null
+        // Slot realmente nunca usado -> pode encerrar a busca
+        int targetSlot = (firstDeletedSlot != -1) ? firstDeletedSlot : slot;
+        int collisions = (firstDeletedSlot != -1) ? firstDeletedCollision : i;
+
+        sensors[targetSlot] = new Sensor(id, type, location);
+        deleted[targetSlot] = false;
+        count++;
+        std::cout << "[OK] Sensor '" << id << "' registrado na posição " << targetSlot << ".\n";
+        return collisions;
+    }
+
+    // Caso extremo: não achou slot "nunca usado", mas há tombstone reaproveitável
+    if (firstDeletedSlot != -1) {
+        sensors[firstDeletedSlot] = new Sensor(id, type, location);
+        deleted[firstDeletedSlot] = false;
+        count++;
+        std::cout << "[OK] Sensor '" << id << "' registrado na posição " << firstDeletedSlot << ".\n";
+        return firstDeletedCollision;
     }
 
     return -1;
@@ -122,10 +172,14 @@ void SensorDataBase::listAllIds() const {
     }
 
     std::cout << "[INFO] Sensores registrados (" << count << "/" << maxSensors << "):\n";
-    for (int i = 0; i < maxSensors; i++) {
+    for (int i = 0; i < maxSensors; i++)
         if (sensors[i] != nullptr)
-            std::cout << "  [posição " << i << "] " << sensors[i]->getId() << "\n";
-    }
+        {
+            std::cout << "----------------------------------------\n";
+            std::cout << "[posição " << i << "]\n";
+            sensors[i]->displayInfo();
+        }
+    std::cout << "----------------------------------------\n";
 }
 
 Sensor** SensorDataBase::getSensors() const {

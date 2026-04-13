@@ -1,10 +1,11 @@
-#include "SensorDataBase.h"
+﻿#include "SensorDataBase.h"
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <random>
 #include <algorithm>
 #include <numeric>
+#include <sstream>
 
 using namespace std;
 using namespace chrono;
@@ -22,10 +23,14 @@ Sensor* findConventional(const vector<Sensor*>& conventional, int id) {
 int main() {
     cout << "Iniciando teste...\n";
 
+    std::ostringstream sink;
+    std::streambuf* oldCout = std::cout.rdbuf(sink.rdbuf());
+
+
     const int NUM_ITEMS = 20000;
     const int NUM_SEARCHES = 1000;
-    const int MAX_SENSORS = 10000; // Tamanho da tabela hash menor para forçar colisões
-    const double PERCENTAGE = 1.00; // Porcentagem de sensores a inserir (70%)
+    const int MAX_SENSORS = 10007; // Tamanho da tabela hash menor para forçar coisões
+    const double PERCENTAGE = 1; // Porcentagem de sensores a inserir (70%)
     const int ITEMS_TO_INSERT = (int)(MAX_SENSORS * PERCENTAGE); // Quantidade de sensores a inserir
 
     // Gerar 10.000 IDs únicos aleatórios
@@ -76,12 +81,14 @@ int main() {
         // Busca na hash
         auto startHash = high_resolution_clock::now();
         Sensor* sHash = db.findById(id);
+        (void)sHash;
         auto endHash = high_resolution_clock::now();
         totalSearchTime += duration<double, milli>(endHash - startHash).count();
 
         // Busca convencional
         auto startConv = high_resolution_clock::now();
         Sensor* sConv = findConventional(conventionalSensors, id);
+        (void)sConv;
         auto endConv = high_resolution_clock::now();
         totalConventionalSearchTime += duration<double, milli>(endConv - startConv).count();
     }
@@ -91,11 +98,14 @@ int main() {
         delete s;
     }
 
+    std::cout.rdbuf(oldCout);
+
     // Resultados
     cout << "=== RESULTADOS DOS TESTES ===\n";
     cout << "Número de itens inseridos: " << ITEMS_TO_INSERT << " (" << (PERCENTAGE * 100) << "% de " << MAX_SENSORS << ")\n";
     cout << "Número de buscas realizadas: " << NUM_SEARCHES << "\n";
     cout << "Tamanho da tabela hash: " << MAX_SENSORS << "\n\n";
+    cout << "PERCENTAGE = " << PERCENTAGE << "%\n";
 
     cout << "INSERÇÃO:\n";
     cout << "  Tempo total (Hash): " << totalInsertionTime << " ms\n";
@@ -112,6 +122,8 @@ int main() {
     cout << "  Tempo total (Convencional): " << totalConventionalSearchTime << " ms\n";
     cout << "  Tempo médio (Convencional): " << (totalConventionalSearchTime / NUM_SEARCHES) << " ms por busca\n";
     cout << "  Relação hash / convencional: " << (totalSearchTime / totalConventionalSearchTime) << "\n";
+    cout << "=========================================" << std::endl;
 
     return 0;
 }
+

@@ -22,7 +22,7 @@ void registerSensor(SensorDataBase& db) {
     std::cout << "\nRegistrar sensor\n";
     std::cout << "ID          : "; std::cin >> id;
     std::cout << "Tipo        : "; std::cin >> type;
-    std::cout << "Localização : "; std::cin >> location;
+    std::cout << "Localização : "; std::getline(std::cin >> std::ws, location); // le a linha inteira isso
     db.registerSensor(id, type, location);
 }
 
@@ -79,13 +79,13 @@ int main() {
     std::cout << "Número máximo de sensores: ";
     std::cin >> maxSensors;
 
-    while (maxSensors <= 0) {
-        std::cout << "[ERROR] Número máximo de sensores deve ser maior que 0.";
+    while (maxSensors <= 1) {
+        std::cout << "[ERROR] Número máximo de sensores deve ser maior que 1.\n";
         std::cin >> maxSensors;
     }
 
     SensorDataBase db(maxSensors);
-    std::cout << "[OK] Sistema criado com capacidade para " << maxSensors << " sensores.\n";
+    std::cout << "[OK] Sistema criado com capacidade para " << db.getMaxSensors() << " sensores.\n";
 
     int option;
 

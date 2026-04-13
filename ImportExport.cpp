@@ -32,7 +32,7 @@ void ImportExport::importSensors(SensorDataBase& db, const std::string& inputFil
         int id;
         std::string dash1, type, dash2, location;
 
-        if (iss >> id >> dash1 >> type >> dash2) {
+        if ((iss >> id >> dash1 >> type >> dash2) && dash1 == "-" && dash2 == "-") {
             // Pega o resto da linha como location
             std::getline(iss, location);
 

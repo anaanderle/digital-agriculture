@@ -1,0 +1,248 @@
+resultados
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 1000 (10% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.1%
+INSERÇÃO:
+  Tempo total (Hash): 0.1803 ms
+  Tempo médio (Hash): 0.0001803 ms por item
+  Tempo total (Convencional): 0.0903 ms
+  Tempo médio (Convencional): 9.03e-05 ms por item
+  Relação hash / convencional: 1.99668
+  Total de colisões (Hash): 40
+  Média de colisões (Hash): 0.04 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1084 ms
+  Tempo médio (Hash): 0.0001084 ms por busca
+  Tempo total (Convencional): 0.5254 ms
+  Tempo médio (Convencional): 0.0005254 ms por busca
+  Relação hash / convencional: 0.206319
+=========================================
+
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 2001 (20% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.2%
+INSERÇÃO:
+  Tempo total (Hash): 0.3996 ms
+  Tempo médio (Hash): 0.0001997 ms por item
+  Tempo total (Convencional): 0.1346 ms
+  Tempo médio (Convencional): 6.72664e-05 ms por item
+  Relação hash / convencional: 2.9688
+  Total de colisões (Hash): 120
+  Média de colisões (Hash): 0.05997 por item
+
+BUSCA:
+  Tempo total (Hash): 0.2285 ms
+  Tempo médio (Hash): 0.0002285 ms por busca
+  Tempo total (Convencional): 1.1789 ms
+  Tempo médio (Convencional): 0.0011789 ms por busca
+  Relação hash / convencional: 0.193825
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 3002 (30% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.3%
+INSERÇÃO:
+  Tempo total (Hash): 0.6495 ms
+  Tempo médio (Hash): 0.000216356 ms por item
+  Tempo total (Convencional): 0.2013 ms
+  Tempo médio (Convencional): 6.70553e-05 ms por item
+  Relação hash / convencional: 3.22653
+  Total de colisões (Hash): 343
+  Média de colisões (Hash): 0.114257 por item
+
+BUSCA:
+  Tempo total (Hash): 0.0939 ms
+  Tempo médio (Hash): 9.39e-05 ms por busca
+  Tempo total (Convencional): 1.5627 ms
+  Tempo médio (Convencional): 0.0015627 ms por busca
+  Relação hash / convencional: 0.0600883
+=========================================
+
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 4002 (40% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.4%
+INSERÇÃO:
+  Tempo total (Hash): 0.8256 ms
+  Tempo médio (Hash): 0.000206297 ms por item
+  Tempo total (Convencional): 0.2434 ms
+  Tempo médio (Convencional): 6.08196e-05 ms por item
+  Relação hash / convencional: 3.39195
+  Total de colisões (Hash): 625
+  Média de colisões (Hash): 0.156172 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1028 ms
+  Tempo médio (Hash): 0.0001028 ms por busca
+  Tempo total (Convencional): 2.1472 ms
+  Tempo médio (Convencional): 0.0021472 ms por busca
+  Relação hash / convencional: 0.0478763
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 5003 (50% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.5%
+INSERÇÃO:
+  Tempo total (Hash): 0.9488 ms
+  Tempo médio (Hash): 0.000189646 ms por item
+  Tempo total (Convencional): 0.2965 ms
+  Tempo médio (Convencional): 5.92644e-05 ms por item
+  Relação hash / convencional: 3.2
+  Total de colisões (Hash): 1145
+  Média de colisões (Hash): 0.228863 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1819 ms
+  Tempo médio (Hash): 0.0001819 ms por busca
+  Tempo total (Convencional): 2.3782 ms
+  Tempo médio (Convencional): 0.0023782 ms por busca
+  Relação hash / convencional: 0.0764864
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 6004 (60% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.6%
+INSERÇÃO:
+  Tempo total (Hash): 1.2028 ms
+  Tempo médio (Hash): 0.000200333 ms por item
+  Tempo total (Convencional): 0.3322 ms
+  Tempo médio (Convencional): 5.53298e-05 ms por item
+  Relação hash / convencional: 3.62071
+  Total de colisões (Hash): 1894
+  Média de colisões (Hash): 0.315456 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1111 ms
+  Tempo médio (Hash): 0.0001111 ms por busca
+  Tempo total (Convencional): 2.8802 ms
+  Tempo médio (Convencional): 0.0028802 ms por busca
+  Relação hash / convencional: 0.0385737
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 7004 (70% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.7%
+INSERÇÃO:
+  Tempo total (Hash): 1.4066 ms
+  Tempo médio (Hash): 0.000200828 ms por item
+  Tempo total (Convencional): 0.4693 ms
+  Tempo médio (Convencional): 6.70046e-05 ms por item
+  Relação hash / convencional: 2.99723
+  Total de colisões (Hash): 3414
+  Média de colisões (Hash): 0.487436 por item
+
+BUSCA:
+  Tempo total (Hash): 0.0942 ms
+  Tempo médio (Hash): 9.42e-05 ms por busca
+  Tempo total (Convencional): 3.0445 ms
+  Tempo médio (Convencional): 0.0030445 ms por busca
+  Relação hash / convencional: 0.030941
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 8005 (80% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.8%
+INSERÇÃO:
+  Tempo total (Hash): 1.7422 ms
+  Tempo médio (Hash): 0.000217639 ms por item
+  Tempo total (Convencional): 0.5223 ms
+  Tempo médio (Convencional): 6.52467e-05 ms por item
+  Relação hash / convencional: 3.33563
+  Total de colisões (Hash): 5691
+  Média de colisões (Hash): 0.710931 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1138 ms
+  Tempo médio (Hash): 0.0001138 ms por busca
+  Tempo total (Convencional): 3.6364 ms
+  Tempo médio (Convencional): 0.0036364 ms por busca
+  Relação hash / convencional: 0.0312947
+=========================================
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 9006 (90% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 0.9%
+INSERÇÃO:
+  Tempo total (Hash): 1.8176 ms
+  Tempo médio (Hash): 0.000201821 ms por item
+  Tempo total (Convencional): 0.6329 ms
+  Tempo médio (Convencional): 7.02754e-05 ms por item
+  Relação hash / convencional: 2.87186
+  Total de colisões (Hash): 10810
+  Média de colisões (Hash): 1.20031 por item
+
+BUSCA:
+  Tempo total (Hash): 0.1347 ms
+  Tempo médio (Hash): 0.0001347 ms por busca
+  Tempo total (Convencional): 4.4579 ms
+  Tempo médio (Convencional): 0.0044579 ms por busca
+  Relação hash / convencional: 0.030216
+=========================================
+
+Iniciando teste...
+=== RESULTADOS DOS TESTES ===
+Número de itens inseridos: 10007 (100% de 10007)
+Número de buscas realizadas: 1000
+Tamanho da tabela hash: 10007
+
+PERCENTAGE = 1%
+INSERÇÃO:
+  Tempo total (Hash): 2.6127 ms
+  Tempo médio (Hash): 0.000261087 ms por item
+  Tempo total (Convencional): 0.6738 ms
+  Tempo médio (Convencional): 6.73329e-05 ms por item
+  Relação hash / convencional: 3.87756
+  Total de colisões (Hash): 73756
+  Média de colisões (Hash): 7.37044 por item
+
+BUSCA:
+  Tempo total (Hash): 22.0565 ms
+  Tempo médio (Hash): 0.0220565 ms por busca
+  Tempo total (Convencional): 15.5796 ms
+  Tempo médio (Convencional): 0.0155796 ms por busca
+  Relação hash / convencional: 1.41573
+=========================================
+
+
+
+
+
+
