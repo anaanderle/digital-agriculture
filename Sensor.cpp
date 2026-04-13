@@ -2,6 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <random>
+
+#include "SensorDataBase.h"
 
 Sensor::Sensor(int id, const std::string& type, const std::string& location)
     : id(id), type(type), location(location),
@@ -11,6 +14,46 @@ void Sensor::updateReading(double newValue) {
     lastReading = newValue;
     lastUpdate = std::time(nullptr);
     history.push_back(newValue);
+}
+
+bool SensorDataBase::simulateReadings(int cycles, double minValue, double maxValue)
+{
+    if (count == 0)
+    {
+        std::cout << "[ERROR] Nenhum sensor registrado para simulação. \n";
+        return false;
+    }
+
+    if (cycles <= 0)
+    {
+        std::cout << "[ERROR] O número de ciclos deve ser maior que zero. \n";
+        return false;
+    }
+
+    if (minValue > maxValue)
+    {
+        double temp = minValue;
+        minValue = maxValue;
+        maxValue = temp;
+    }
+
+    // funcao para gerar um valor aleatório entre minValue e maxValue
+    std::mt19937 gen(std::random_device{}());
+    std::uniform_real_distribution<double> dist(minValue, maxValue);
+
+    int updates = 0;
+    for (int c = 0; c < cycles; c++)
+        for (int i = 0; i < maxSensors; i++)
+            if (sensors[i] != nullptr)
+            {
+                sensors[i]->updateReading(dist(gen));
+                updates++;
+            }
+
+    std::cout << "[OK] Simulação concluída. "
+              << cycles << " ciclo(s), " << updates << " leitura(s) gerada(s).\n";
+
+    return true;
 }
 
 void Sensor::displayInfo() const {

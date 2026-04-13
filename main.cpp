@@ -12,6 +12,7 @@ void printMenu() {
     std::cout << "5. Exibir todos os sensores\n";
     std::cout << "6. Importar sensores\n";
     std::cout << "7. Exportar sensores\n";
+    std::cout << "8. Simular leituras automáticas\n";
     std::cout << "0. Sair\n";
     std::cout << "Opção: ";
 }
@@ -72,6 +73,25 @@ void exportSensors(const SensorDataBase& db) {
     ImportExport::exportSensors(db, outputFile);
 }
 
+void simulateAutomaticReadings(SensorDataBase& db) {
+    int cycles;
+    double minValue, maxValue;
+
+    std::cout << "\nSimular leituras automáticas\n";
+    std::cout << "Número de ciclos : "; std::cin >> cycles;
+    std::cout << "Valor mínimo     : "; std::cin >> minValue;
+    std::cout << "Valor máximo     : "; std::cin >> maxValue;
+
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+        std::cout << "[ERROR] Entrada inválida.\n";
+        return;
+    }
+
+    db.simulateReadings(cycles, minValue, maxValue);
+}
+
 int main() {
     int maxSensors;
 
@@ -108,6 +128,7 @@ int main() {
             case 5: displayAll(db);     break;
             case 6: importSensors(db);  break;
             case 7: exportSensors(db);  break;
+            case 8: simulateAutomaticReadings(db); break;
             case 0:
                 std::cout << "\n[INFO] Saindo do sistema!\n";
                 break;

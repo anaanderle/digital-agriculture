@@ -22,6 +22,7 @@ public:
     bool     removeById(int id);
     bool     updateReading(int id, double value);
     void     listAllIds() const;
+    bool simulateReadings(int cycles, double minValue, double maxValue);
 
     Sensor** getSensors() const;
     int      getMaxSensors() const;

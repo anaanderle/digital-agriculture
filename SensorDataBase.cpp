@@ -82,6 +82,7 @@ int SensorDataBase::registerSensor(int id, const std::string& type, const std::s
         return -1;
     }
 
+    // variáveis para manter o primeiro slot "tombstone" encontrado durante a sondagem, caso seja necessário reutilizlizar
     int firstDeletedSlot = -1;
     int firstDeletedCollision = -1;
 
