@@ -105,7 +105,7 @@ int main() {
     cout << "Número de itens inseridos: " << ITEMS_TO_INSERT << " (" << (PERCENTAGE * 100) << "% de " << MAX_SENSORS << ")\n";
     cout << "Número de buscas realizadas: " << NUM_SEARCHES << "\n";
     cout << "Tamanho da tabela hash: " << MAX_SENSORS << "\n\n";
-    cout << "PERCENTAGE = " << PERCENTAGE << "%\n";
+    cout << "PERCENTAGE = " << PERCENTAGE * 100 << "%\n";
 
     cout << "INSERÇÃO:\n";
     cout << "  Tempo total (Hash): " << totalInsertionTime << " ms\n";

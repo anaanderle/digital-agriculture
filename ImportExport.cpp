@@ -53,6 +53,7 @@ void ImportExport::importSensors(SensorDataBase& db, const std::string& inputFil
             }
         } else {
             std::cout << "[ERROR] Formato inválido na linha: " << line << "\n";
+            failureCount++;
         }
     }
 
