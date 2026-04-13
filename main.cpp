@@ -109,6 +109,13 @@ int main() {
     std::cout << "1. Sim (padrão)\n";
     std::cout << "2. Não\n";
     std::cin >> optimizeMaxSensorOption;
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+        optimizeMaxSensorOption = 1;
+    } else if (optimizeMaxSensorOption != 1 && optimizeMaxSensorOption != 2) {
+        optimizeMaxSensorOption = 1;
+    }
 
     bool optimizeMaxSensor = (optimizeMaxSensorOption != 2);
 
