@@ -1,5 +1,15 @@
 # Agricultura Digital - Sistema de Gerenciamento de Sensores
 
+## Autores
+
+Ana Clara Anderle
+
+Carolina Silva dos Santos
+
+Guilherme Lenzi
+
+Taimisson de Carvalho
+
 ## 📋 Descrição do Projeto
 
 Este projeto implementa um **sistema de gerenciamento de sensores para agricultura digital** utilizando uma **tabela hash com endereçamento duplo** como estrutura de dados principal. O sistema permite registrar, buscar, atualizar e remover sensores agrícolas, mantendo um histórico de leituras de cada sensor.
@@ -194,23 +204,25 @@ Os testes realizam:
 Iniciando teste...
 
 === RESULTADOS DOS TESTES ===
-Número de itens inseridos: 20000
+Número de itens inseridos: 7000 (70% de 10000)
 Número de buscas realizadas: 1000
 Tamanho da tabela hash: 10000
 
 INSERÇÃO:
-  Tempo total (Hash): 45.3 ms
-  Tempo médio (Hash): 0.00226 ms por item
-  Tempo total (Convencional): 2340.5 ms
-  Tempo médio (Convencional): 0.117 ms por item
-  Total de colisões (Hash): 8932
-  Média de colisões (Hash): 0.4466 por item
+  Tempo total (Hash): 178.137 ms
+  Tempo médio (Hash): 0.0254481 ms por item
+  Tempo total (Convencional): 8.97453 ms
+  Tempo médio (Convencional): 0.00128208 ms por item
+  Relação hash / convencional: 19.8491
+  Total de colisões (Hash): 3279
+  Média de colisões (Hash): 0.468429 por item
 
 BUSCA:
-  Tempo total (Hash): 2.1 ms
-  Tempo médio (Hash): 0.0021 ms por busca
-  Tempo total (Convencional): 3456.2 ms
-  Tempo médio (Convencional): 3.456 ms por busca
+  Tempo total (Hash): 5.8274 ms
+  Tempo médio (Hash): 0.0058274 ms por busca
+  Tempo total (Convencional): 142.156 ms
+  Tempo médio (Convencional): 0.142156 ms por busca
+  Relação hash / convencional: 0.0409929
 ```
 
 ---

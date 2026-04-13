@@ -25,6 +25,8 @@ int main() {
     const int NUM_ITEMS = 20000;
     const int NUM_SEARCHES = 1000;
     const int MAX_SENSORS = 10000; // Tamanho da tabela hash menor para forçar colisões
+    const double PERCENTAGE = 1.00; // Porcentagem de sensores a inserir (70%)
+    const int ITEMS_TO_INSERT = (int)(MAX_SENSORS * PERCENTAGE); // Quantidade de sensores a inserir
 
     // Gerar 10.000 IDs únicos aleatórios
     vector<int> ids(NUM_ITEMS);
@@ -44,8 +46,9 @@ int main() {
     double totalConventionalSearchTime = 0.0;
     long long totalCollisions = 0;
 
-    // Inserção convencional e na hash
-    for (int id : ids) {
+    // Inserção convencional e na hash - apenas ITEMS_TO_INSERT (70% de MAX_SENSORS)
+    for (int i = 0; i < ITEMS_TO_INSERT; i++) {
+        int id = ids[i];
         // Inserção convencional
         auto startConv = high_resolution_clock::now();
         conventionalSensors.push_back(new Sensor(id, "TipoFixo", "LocalFixo"));
@@ -90,23 +93,25 @@ int main() {
 
     // Resultados
     cout << "=== RESULTADOS DOS TESTES ===\n";
-    cout << "Número de itens inseridos: " << NUM_ITEMS << "\n";
+    cout << "Número de itens inseridos: " << ITEMS_TO_INSERT << " (" << (PERCENTAGE * 100) << "% de " << MAX_SENSORS << ")\n";
     cout << "Número de buscas realizadas: " << NUM_SEARCHES << "\n";
     cout << "Tamanho da tabela hash: " << MAX_SENSORS << "\n\n";
 
     cout << "INSERÇÃO:\n";
     cout << "  Tempo total (Hash): " << totalInsertionTime << " ms\n";
-    cout << "  Tempo médio (Hash): " << (totalInsertionTime / NUM_ITEMS) << " ms por item\n";
+    cout << "  Tempo médio (Hash): " << (totalInsertionTime / ITEMS_TO_INSERT) << " ms por item\n";
     cout << "  Tempo total (Convencional): " << totalConventionalInsertionTime << " ms\n";
-    cout << "  Tempo médio (Convencional): " << (totalConventionalInsertionTime / NUM_ITEMS) << " ms por item\n";
+    cout << "  Tempo médio (Convencional): " << (totalConventionalInsertionTime / ITEMS_TO_INSERT) << " ms por item\n";
+    cout << "  Relação hash / convencional: " << (totalInsertionTime / totalConventionalInsertionTime) << "\n";
     cout << "  Total de colisões (Hash): " << totalCollisions << "\n";
-    cout << "  Média de colisões (Hash): " << (static_cast<double>(totalCollisions) / NUM_ITEMS) << " por item\n\n";
+    cout << "  Média de colisões (Hash): " << (static_cast<double>(totalCollisions) / ITEMS_TO_INSERT) << " por item\n\n";
 
     cout << "BUSCA:\n";
     cout << "  Tempo total (Hash): " << totalSearchTime << " ms\n";
     cout << "  Tempo médio (Hash): " << (totalSearchTime / NUM_SEARCHES) << " ms por busca\n";
     cout << "  Tempo total (Convencional): " << totalConventionalSearchTime << " ms\n";
     cout << "  Tempo médio (Convencional): " << (totalConventionalSearchTime / NUM_SEARCHES) << " ms por busca\n";
+    cout << "  Relação hash / convencional: " << (totalSearchTime / totalConventionalSearchTime) << "\n";
 
     return 0;
 }
